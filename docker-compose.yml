@@ -1,0 +1,21 @@
+# Docker-compose.yml file for kiralpoon/docker-django project
+
+# This defines a service for the Django app
+django:
+  build: .
+  volumes:
+    - .:/usr/src/app
+  links:
+    - postgres
+    - memcached
+  ports:
+    - "8000:8000"
+
+
+# This defines a service for the Postgres database
+postgres:
+  image: postgres:9.3
+
+# This defines a service for the Memcached server
+memcached:
+  image: kiralpoon/memcached:latest
